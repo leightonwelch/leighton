@@ -9,7 +9,7 @@ def index():
 
 @app.route('/tableData')
 def tableData():
-    return pd.DataFrame(np.random.randn(10, 2),columns=['A', 'B']).to_json()
+    return pd.DataFrame(np.random.randn(10, 2),columns=['Col-A', 'Col-B']).to_json()
     #return '{"data": "table data here"}'
 
 if __name__ == '__main__':
