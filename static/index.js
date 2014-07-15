@@ -1,7 +1,9 @@
 // to do: 
+// walkthrough of code structure thus far 
 // abstract template to html file
-// use underscore to manipulate JSON instea of object.keys()
-// have change_dd1 call a python function (from backbone event handler)
+// have change_dd1 modify dd_2 (can we call python func in between?)
+// set up go button with form and ajax 
+    // get values of objects on form at time of click
 // reroute all other urls, why #table
 
 var App = {
@@ -20,7 +22,7 @@ App.Models.Table = Backbone.Model.extend({
 App.Views.Table = Backbone.View.extend({
     el: $('#container'),
     //template: _.template("hello: <%= val %>"),
-    template: _.template("<select class=dd1><% _.each(column, function(colname) { %> <option><%= colname %></option> <% }); %></select></br><select><option></option></select>"),
+    template: _.template("<select class=dd1><% _.each(columns, function(colname) { %> <option><%= colname %></option> <% }); %></select></br><select><option></option></select>"),
     initialize: function(){
         this.render();
     },
@@ -29,13 +31,14 @@ App.Views.Table = Backbone.View.extend({
         //$(this.el).html("TEST");
         //$(this.el).html(JSON.stringify(this.model.toJSON()));
         //$(this.el).html(this.template({column: ['moe', 'curly', 'larry']}));
-        $(this.el).html(this.template({column: Object.keys(this.model.toJSON())}));
+        $(this.el).html(this.template({columns: _.keys(this.model.toJSON())}));
     },
     events: {
         "change .dd1": "change_dd1"
     },
     change_dd1: function(e) {
         console.log(e.originalEvent.srcElement.value);
+        console.log()
     },
 });
 
